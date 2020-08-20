@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.wongoo.dubbo</groupId>
+    <artifactId>dubbo-demo</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <modules>
+        <module>hello-service-api</module>
+        <module>hello-service-impl</module>
+        <module>hello-service-provider</module>
+        <module>hello-service-provider-zk</module>
+        <module>hello-service-consumer</module>
+        <module>hello-service-consumer-zk</module>
+        <module>hello-service-generic-request</module>
+    </modules>
+    <packaging>pom</packaging>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>apache-curator</artifactId>
+                <version>5.1.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>2.7.8</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-spring-boot-starter</artifactId>
+                <version>2.7.8</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>2.2.6.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.wongoo.dubbo</groupId>
+                <artifactId>hello-service-api</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.wongoo.dubbo</groupId>
+                <artifactId>hello-service-impl</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
