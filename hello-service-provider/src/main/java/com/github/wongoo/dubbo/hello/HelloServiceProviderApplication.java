@@ -4,6 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
+ * this project start dubbo service at port 12345, not use registry
+ * <p>
+ * see application.properties
+ *
  * @author wongoo
  */
 @SpringBootApplication

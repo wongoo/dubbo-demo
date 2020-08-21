@@ -14,13 +14,19 @@ application:
   module : "dubbogo generic client"
   version : "0.0.1"
   owner : "wongoo"
-  environment : "release"
+  environment : "test"
 
 registries :
   "localzk":
     protocol: "zookeeper"
-    timeout	: "3s"
+    timeout: "3s"
     address: "127.0.0.1:2181"
+    username: ""
+    password: ""
+  "localdubbo":
+    protocol: "dubbo"
+    timeout: "3s"
+    address: "127.0.0.1:12346"
     username: ""
     password: ""
 

@@ -1,6 +1,8 @@
 package com.github.wongoo.dubbo.hello.service;
 
 import com.github.wongoo.dubbo.hello.HelloService;
+import com.github.wongoo.dubbo.hello.Request;
+import com.github.wongoo.dubbo.hello.Response;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.apache.dubbo.rpc.RpcContext;
 import org.slf4j.Logger;
@@ -29,5 +31,21 @@ public class HelloServiceImpl implements HelloService {
                 name,
                 RpcContext.getServerContext().getLocalAddressString()
         );
+    }
+
+    @Override
+    public Response exchange(Request request) {
+        logger.info("exchange received from {}:{} -> {}, {}, {}",
+                RpcContext.getContext().getRemoteHost(),
+                RpcContext.getContext().getRemotePort(),
+                request.getTime(),
+                request.getId(),
+                request.getContent());
+        Response response = new Response();
+        response.setRequestId(request.getId());
+        response.setResult(String.format("ok, I have received your request: %s, time: %s",
+                request.getContent(),
+                request.getTime()));
+        return response;
     }
 }

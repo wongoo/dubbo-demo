@@ -12,4 +12,12 @@ public interface HelloService {
      * @return message
      */
     String sayHello(String name);
+
+    /**
+     * exchange message
+     *
+     * @param request request message
+     * @return response message
+     */
+    Response exchange(Request request);
 }

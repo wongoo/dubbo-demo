@@ -1,16 +1,25 @@
 package com.github.wongoo.dubbo.hello.generic;
 
-import org.apache.dubbo.config.ReferenceConfig;
-import org.apache.dubbo.rpc.service.GenericService;
-
 /**
  * @author wongoo
  */
-public class HelloServiceGenericRequest {
+public class HelloServiceGenericRequest extends AbstractHelloServiceGeneric {
 
+    /**
+     * hello-service-provider serve at port 12345
+     * hello-service-provider-zk serve at port 12346
+     * <p>
+     * start the project hello-service-provider first
+     */
     public static void main(String[] args) {
-        ReferenceConfig<GenericService> reference = new ReferenceConfig<GenericService>();
-        reference.setUrl("dubbo://127.0.0.1:12345");
-        HelloServiceGeneric.callHelloService(reference, "hello-service-generic");
+        configApplication("hello-service-generic");
+
+        configReferenceBaseInfo();
+
+        configReferenceUrl("dubbo://127.0.0.1:12346");
+
+        initGenericService();
+
+        callHelloService();
     }
 }
