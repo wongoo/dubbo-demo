@@ -17,25 +17,6 @@ import (
 	_ "github.com/apache/dubbo-go/registry/zookeeper"
 )
 
-type Request struct {
-	Id      int64
-	Content string
-	Time    time.Time
-}
-
-func (Request) JavaClassName() string {
-	return "com.github.wongoo.dubbo.hello.Request"
-}
-
-type Response struct {
-	RequestId int64
-	Result    string
-}
-
-func (Response) JavaClassName() string {
-	return "com.github.wongoo.dubbo.hello.Response"
-}
-
 var (
 	genericService  *config.GenericService
 	referenceConfig = &config.ReferenceConfig{
@@ -80,14 +61,14 @@ var (
 )
 
 func exchange() {
-	req := &Request{
-		Id:      atomic.AddInt64(&sequence, 1),
-		Content: "hello golang generic",
-		Time:    time.Now(),
+	req := map[string]interface{}{
+		"id":      atomic.AddInt64(&sequence, 1),
+		"content": "hello golang generic",
+		"time":    time.Now(),
 	}
 
 	resp, err := genericService.Invoke(context.TODO(),
-		[]interface{}{"exchange", []string{req.JavaClassName()}, []hessian.Object{req}})
+		[]interface{}{"exchange", []string{"com.github.wongoo.dubbo.hello.Request"}, []hessian.Object{req}})
 	if err != nil {
 		panic(err)
 	}
