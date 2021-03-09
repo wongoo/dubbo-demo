@@ -1,5 +1,7 @@
 package com.github.wongoo.dubbo.hello;
 
+import java.util.Map;
+
 /**
  * @author wongoo
  */
@@ -11,7 +13,7 @@ public interface HelloService {
      * @param name user name
      * @return message
      */
-    String sayHello(String name);
+    Map<String, Object> sayHello(String name);
 
     /**
      * exchange message

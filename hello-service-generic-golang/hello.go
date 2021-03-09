@@ -53,7 +53,7 @@ func sayHello() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("res: %+v\n", resp)
+	fmt.Printf("sayHello receive resp: %+v\n", resp)
 }
 
 var (
@@ -79,7 +79,7 @@ func exchange() {
 func GenericCall() {
 	loadGenericService()
 
-	for i := 0; i < 10; i++ {
+	for i := 0; i < 1; i++ {
 		sayHello()
 		exchange()
 	}
