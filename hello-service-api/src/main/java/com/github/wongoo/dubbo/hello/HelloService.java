@@ -22,4 +22,13 @@ public interface HelloService {
      * @return response message
      */
     Response exchange(Request request);
+
+
+    /**
+     * TestJsonData function
+     *
+     * @param
+     * @return response message
+     */
+    TestJsonObject testResponseJsonData(String name);
 }

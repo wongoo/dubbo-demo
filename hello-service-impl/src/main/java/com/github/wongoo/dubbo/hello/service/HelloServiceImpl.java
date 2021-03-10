@@ -1,9 +1,7 @@
 package com.github.wongoo.dubbo.hello.service;
 
-import com.github.wongoo.dubbo.hello.AccessMap;
-import com.github.wongoo.dubbo.hello.HelloService;
-import com.github.wongoo.dubbo.hello.Request;
-import com.github.wongoo.dubbo.hello.Response;
+import com.alibaba.fastjson.JSONObject;
+import com.github.wongoo.dubbo.hello.*;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.apache.dubbo.rpc.RpcContext;
 import org.slf4j.Logger;
@@ -39,6 +37,27 @@ public class HelloServiceImpl implements HelloService {
         //return uid + System.currentTimeMillis();[
         return mapDemo;
     }
+
+    @Override
+    public TestJsonObject testResponseJsonData(String name) {
+        logger.info("hello request from {}:{}",
+                RpcContext.getContext().getRemoteHost(),
+                RpcContext.getContext().getRemotePort());
+        TestJsonObject t = new TestJsonObject();
+        t.ob = new JSONObject();
+        BigDecimal decimal = new BigDecimal("100");
+        Map<String, Object> mapDemo = new AccessMap();
+        //放进去decimal之后就会报错
+        t.ob.put("test_BigDecimal",decimal);
+        t.ob.put("test_string", "123");
+        t.ob.put("test_int", 123);
+        t.ob.put("test_float", 123F);
+        t.ob.put("test_long", 123L);
+        t.ob.put("test_double", 123D);
+        t.ob.put("test_map", mapDemo);
+        return t;
+    }
+
 
     @Override
     public Response exchange(Request request) {

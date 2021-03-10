@@ -56,6 +56,18 @@ func sayHello() {
 	fmt.Printf("sayHello receive resp: %+v\n", resp)
 }
 
+func testJsonData() {
+	// NOTICE: the third parameter must be a slice of hessian.Object,
+	// so that the parameter type will be `[Ljava/lang/Object;`
+	resp, err := genericService.Invoke(context.TODO(),
+		[]interface{}{"testResponseJsonData", []string{"java.lang.String"}, []hessian.Object{"world"}})
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("testJsonData receive resp: %+v\n", resp)
+}
+
+
 var (
 	sequence int64
 )
@@ -80,8 +92,9 @@ func GenericCall() {
 	loadGenericService()
 
 	for i := 0; i < 1; i++ {
-		sayHello()
-		exchange()
+		//sayHello()
+		//exchange()
+		testJsonData()
 	}
 
 	fmt.Println("finish!")
